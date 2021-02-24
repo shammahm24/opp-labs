@@ -65,8 +65,12 @@ void Postman::visitBoxes()
 {
     
     for(int i=1;i<size;i++){
-        for(int j=i+1;j<size;i+i)
+        //get previouse row data
+        copyPrev(i);
+        for(int j=i;j<size;j+=(i+1))
         {
+            
+            //update new open and closed boxes
             if(table[i][j]=='c')
             {
                 table[i][j]='O';
@@ -79,15 +83,21 @@ void Postman::visitBoxes()
     }
 }
 
-void Postman::display()
+void Postman::copyPrev(int i)
 {
-    for(int i=0;i<size;i++)
+        
+        for(int j=0;j<size;j++){
+            if(table[i-1][j]=='C'||table[i-1][j]=='c')
             {
-                for(int j=0;j<size;j++)
-                {
-                    cout<<table[i][j];
-                }
+                table[i][j]='c';
+            
             }
+            if(table[i-1][j]=='O'||table[i-1][j]=='o')
+            {
+                table[i][j]='o';
+                
+            }
+        }
 }
 
 //overloaded operators
@@ -110,9 +120,9 @@ std::ostream & operator<<(std::ostream & os,Postman &p)
     
     for(int i=0;i<p.size;i++)
     {
-        for(int j=0;j<p.size;)
+        for(int j=0;j<p.size;j++)
         {
-            os<<p.table[i][j];
+            os<<p.table[i][j]<<"    ";
         }
         os<<std::endl;
     }

@@ -12,9 +12,10 @@ using namespace std;
 
 int main()
 {
-    
+   
     ifstream infile("test.txt");
     string temp="";
+    
     if(!infile)
     {
         cout<<"Failed to open file. \n";
@@ -22,12 +23,24 @@ int main()
     }
     else
     {
+        
         while(std::getline(infile,temp))
         {
+            
             Postman postman(stoi(temp));
+            cout<<endl;
+
+            cout<<"Number of mailboxes specified: "<<temp<<endl;
+            cout<<endl;
+
+            for(int i=0;i<stoi(temp);i++)
+            {
+                cout<<i+1<<"    ";
+            }
+            cout<<endl;
             postman.visitBoxes();
-            postman.display();
-            cout<<postman;
+            cout<<postman; //print with overriden operator
+            cout<<endl;
         }
         infile.close();
     }

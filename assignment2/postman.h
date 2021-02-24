@@ -22,7 +22,7 @@ class Postman
     Postman(Postman &p); // copy constructor
     void createTable(int size,char **table);
     void visitBoxes();
-    void display();
+    void copyPrev(int prev);
 
     //overriden operators
     friend std::ostream & operator<<(std::ostream & os,Postman & postman);
