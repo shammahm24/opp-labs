@@ -126,6 +126,6 @@ std::ostream & operator<<(std::ostream & os,Postman &p)
         }
         os<<std::endl;
     }
-    
+    delete[] p.table;
     return os;
 }
